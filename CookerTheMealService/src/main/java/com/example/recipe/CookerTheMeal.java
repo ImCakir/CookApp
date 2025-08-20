@@ -6,6 +6,7 @@ import com.example.recipe.dto.Root;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -28,5 +29,10 @@ public class CookerTheMeal {
     {
         Root root = getRoot(meal);
         return root != null ? root.getMeals() : List.of();
+    }
+
+    public List<Meal> searchMeals(String meal) {
+        Root root = getRoot(meal);
+        return root != null ? root.getMeals() : Collections.emptyList();
     }
 }
