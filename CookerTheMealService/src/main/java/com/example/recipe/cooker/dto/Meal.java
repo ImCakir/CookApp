@@ -1,4 +1,4 @@
-package com.example.recipe.dto;
+package com.example.recipe.cooker.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;

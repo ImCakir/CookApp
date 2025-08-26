@@ -1,4 +1,4 @@
-package com.example.recipe.config;
+package com.example.recipe.cooker.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

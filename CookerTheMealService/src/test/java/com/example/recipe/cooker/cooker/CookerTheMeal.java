@@ -1,8 +1,8 @@
-package com.example.recipe.cooker;
+package com.example.recipe.cooker.cooker;
 
 
-import com.example.recipe.dto.Meal;
-import com.example.recipe.dto.Root;
+import com.example.recipe.cooker.dto.Meal;
+import com.example.recipe.cooker.dto.Root;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 

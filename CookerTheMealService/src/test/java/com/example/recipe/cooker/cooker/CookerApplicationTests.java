@@ -1,4 +1,4 @@
-package com.example.recipe.cooker;
+package com.example.recipe.cooker.cooker;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;

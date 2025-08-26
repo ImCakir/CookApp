@@ -3,27 +3,35 @@ package com.example.recipe.cooker.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public Long id;
+    private Long id;
 
     @Column(nullable = false, unique = true)
-    public String username;
+    private String username;
 
     @Column(nullable = false)
-    public String email;
+    private String email;
 
     @Column(nullable = false )
-    public String password;
+    private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
-    public List<Favorite> favorites;
+    private List<Favorite> favorites;
+
+
+    public User(String username, String email) {
+        this.username = username;
+        this.email = email;
     }
+}
 

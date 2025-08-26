@@ -12,4 +12,12 @@ import java.util.Optional;
 public interface IFavoriteRepository extends CrudRepository<Favorite, Long> {
 
   List<Favorite> findByUser(User user);
+
+  Boolean existsByUser(User user);
+
+  Optional<Favorite> findByUserIdAndRecipeId(Long id, Long id1);
+
+  boolean existsByUserIdAndRecipeId(Long id, Long id1);
+
+
 }

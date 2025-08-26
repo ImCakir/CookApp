@@ -1,15 +1,14 @@
 package com.example.recipe.cooker;
 
-
-import com.example.recipe.CookerTheMeal;
+import com.example.recipe.cooker.CookerTheMeal;
 import com.example.recipe.cooker.dal.CookerRepositoryHelper;
-import com.example.recipe.cooker.dto.RecipeDto;
+import com.example.recipe.cooker.dto.MealDto;
+import com.example.recipe.cooker.entity.Recipe;
+import com.example.recipe.cooker.entity.User;
 import com.example.recipe.cooker.mapper.CookerServiceMapper;
-import com.example.recipe.dto.Meal;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class CookerAppService {
@@ -27,12 +26,37 @@ public class CookerAppService {
 
     }
 
-    public List<RecipeDto> searchRecipes(String meal) {
-        List<Meal> meals = cookerTheMeal.searchMeals(meal);
-        return meals.stream()
-                .map(cookerServiceMapper::mealToDto)//mealdto recipedto ya donusturuluyor.
-                .collect(Collectors.toList());//collect verileri toplar, toList ile liste halıne getırılır.
+    public MealDto searchMealWithProvider(String mealNameStr)
+    {
+        var providerMeal = cookerTheMeal.searchMeals(mealNameStr).get(0);
 
+        return cookerServiceMapper.mealDtoToMeal(providerMeal);
 
-}
     }
+
+
+
+    @Transactional
+    public MealDto saveFavoriteMeal(String mealNameStr, String customerName, Boolean isFavorite) {
+        MealDto mealDto = searchMealWithProvider(mealNameStr);
+
+        Recipe recipe = cookerServiceMapper.mealDtoToRecipe(mealDto);
+
+        if (!cookerRepositoryHelper.existsByRecipeMealName(mealNameStr)) {
+            recipe = cookerRepositoryHelper.saveRecipe(recipe);
+        } else {
+            Recipe finalRecipe = recipe;
+            recipe = cookerRepositoryHelper.findRecipeByMealName(mealNameStr)
+                    .orElseGet(() -> cookerRepositoryHelper.saveRecipe(finalRecipe));
+        }
+
+        User user = cookerRepositoryHelper.findOrCreateUserByUsername(customerName, null);
+
+        if (isFavorite) {
+            cookerRepositoryHelper.saveFavorite(user, recipe);
+        }
+
+        return cookerServiceMapper.recipeToMealDto(recipe);
+    }
+}
+
