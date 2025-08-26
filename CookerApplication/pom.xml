@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example.recipe </groupId>
-	<artifactId>cooker</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>cooker</name>
-	<description>Demo project for Spring Boot</description>
+	<artifactId>cookerApp</artifactId>
+	<version>1.0.0</version>
+	<name>cookerApplication</name>
+	<description>CookerApp project for Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -31,6 +31,18 @@
 	</properties>
 	<dependencies>
 		<dependency>
+		<groupId>com.example.recipe </groupId>
+		<artifactId>cooker-service</artifactId>
+		<version>1.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.example.recipe </groupId>
+			<artifactId>cooker-the-meal-service</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
@@ -39,6 +51,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.3</version> <!-- en son sürüm olabilir -->
 		</dependency>
 	</dependencies>
 
@@ -52,3 +70,10 @@
 	</build>
 
 </project>
+
+
+
+
+
+
+

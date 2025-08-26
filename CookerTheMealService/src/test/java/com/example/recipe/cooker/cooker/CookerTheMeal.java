@@ -1,4 +1,4 @@
-package com.example.recipe;
+package com.example.recipe.cooker;
 
 
 import com.example.recipe.dto.Meal;

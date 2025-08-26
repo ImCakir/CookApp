@@ -1,6 +1,10 @@
 package com.example.recipe.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class Meal {
@@ -57,5 +61,45 @@ public class Meal {
         public String strImageSource;
         public String strCreativeCommonsConfirmed;
         public String dateModified;
-   
+
+
+
+
+        // Ingredient listesini döndürür
+        @JsonIgnore
+        public List<String> getIngredients() {
+                List<String> ingredients = new ArrayList<>();
+                for (int i = 1; i <= 20; i++) {
+                        try {
+                                String ingredient = (String) this.getClass()
+                                        .getDeclaredField("strIngredient" + i)
+                                        .get(this);
+                                if (ingredient != null && !ingredient.isBlank()) {
+                                        ingredients.add(ingredient);
+                                }
+                        } catch (IllegalAccessException | NoSuchFieldException e) {
+                                // Alan bulunamazsa pas geç
+                        }
+                }
+                return ingredients;
+        }
+
+        // Ölçü listesini döndürür
+        @JsonIgnore
+        public List<String> getMeasures() {
+                List<String> measures = new ArrayList<>();
+                for (int i = 1; i <= 20; i++) {
+                        try {
+                                String measure = (String) this.getClass()
+                                        .getDeclaredField("strMeasure" + i)
+                                        .get(this);
+                                if (measure != null && !measure.isBlank()) {
+                                        measures.add(measure);
+                                }
+                        } catch (IllegalAccessException | NoSuchFieldException e) {
+                                // Alan bulunamazsa pas geç
+                        }
+                }
+                return measures;
+        }
 }
