@@ -50,7 +50,7 @@ public class CookerAppService {
                     .orElseGet(() -> cookerRepositoryHelper.saveRecipe(finalRecipe));
         }
 
-        User user = cookerRepositoryHelper.findOrCreateUserByUsername(customerName, null);
+        User user = cookerRepositoryHelper.findOrCreateUserByUsername(customerName, "test@test.com");
 
         if (isFavorite) {
             cookerRepositoryHelper.saveFavorite(user, recipe);

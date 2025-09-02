@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.example.recipe </groupId>
 	<artifactId>cooker-service</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.3</version>
 	<name>CookerService</name>
 
 	<url/>
@@ -37,7 +37,7 @@
 		<dependency>
 		<groupId>com.example.recipe </groupId>
 		<artifactId>cooker-repository</artifactId>
-		<version>2.0.1</version>
+		<version>2.0.2</version>
 		</dependency>
 
 		<dependency>

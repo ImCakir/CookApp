@@ -19,11 +19,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(nullable = false)
     private String email;
-
-    @Column(nullable = false )
-    private String password;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user", cascade = CascadeType.ALL)
     private List<Favorite> favorites;
